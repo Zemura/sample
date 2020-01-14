@@ -1,0 +1,56 @@
+import tkinter
+from tkinter import font
+import random
+
+# Tkクラス生成
+root = tkinter.Tk()
+# 画面サイズ
+root.geometry('1000x800')
+# 画面タイトル
+root.title('ボタン')
+
+#ラベル
+label1 = tkinter.Label(root, text="ウォーリーを探せ！！！！")  #文字ラベル設定
+label1.pack(side="top") # 場所を指定　
+
+#文字色、背景色、サイズ、フォントを指定。
+font1 = font.Font(family='Helvetica', size=40,)
+label2 = tkinter.Label(root, text="数字を選ぶ", font=font1)
+label2.pack(side="top")
+
+#座標入力
+font2 = font.Font(family='Helvetica', size=40)
+label3 = tkinter.Label(root, text="スコア", font=font2)
+label3.place(x=400, y=700)
+
+# ウィジェットをクリック
+def callback(event):
+    # ボタンの背景色を赤に変更
+    if event.widget["bg"] == "SystemButtonFace":
+        event.widget["bg"] = "red"
+    # 赤色なら元に戻す。
+    else:
+        event.widget["bg"] = "SystemButtonFace"
+
+# ボタン
+btn = tkinter.Button(root, text='1'+str(),height=5,width=10)
+btn.bind("<1>",callback)
+btn.place(x=10, y=500)
+btn = tkinter.Button(root, text='2',height=5,width=10)
+btn.place(x=100, y=500)
+btn = tkinter.Button(root, text='3',height=5,width=10)
+btn.place(x=190, y=500)
+btn = tkinter.Button(root, text='4',height=5,width=10)
+btn.place(x=10, y=600)
+btn = tkinter.Button(root, text='5',height=5,width=10)
+btn.place(x=100, y=600)
+btn = tkinter.Button(root, text='6',height=5,width=10)
+btn.place(x=190, y=600)
+btn = tkinter.Button(root, text='7',height=5,width=10)
+btn.place(x=10, y=700)
+btn = tkinter.Button(root, text='8',height=5,width=10)
+btn.place(x=100, y=700)
+btn = tkinter.Button(root, text='9',height=5,width=10)
+btn.place(x=190, y=700)
+
+root.mainloop()
