@@ -1,0 +1,182 @@
+import tkinter as tk
+import tkinter.ttk as ttk
+from tkinter import font
+import random
+#pip install pillow
+from PIL import Image, ImageTk
+import threading
+import time
+
+
+class TitleScene(object):
+    def __init__(self, root, on_cleanup):
+        self.root = root
+        self.on_cleanup = on_cleanup
+        self.label1 = None
+        self.button1 = None
+        self.button2 = None
+        self.button3 = None
+        self.button4 = None
+
+
+    def setup(self):
+        self.root.geometry("750x750")
+        self.root.title("タイトル")
+        self.root.configure(background="#000000")
+
+        self.label1 = tk.Label(self.root, text="間違い探しゲーム", font=("",46), height=5, bg="black", fg="red")
+        self.label1.pack(fill="x")
+
+        self.button1 = tk.Button(self.root, text="Stage1", font=("",36), width=50, bg="red", command=self.cleanup)
+        self.button1.pack()
+
+        self.button2 = tk.Button(self.root, text="Stage2", font=("",36), width=50, bg="red", command=self.cleanup)
+        self.button2.pack()
+
+        self.button3 = tk.Button(self.root, text="Stage3", font=("",36), width=50, bg="red", command=self.cleanup)
+        self.button3.pack()
+
+        self.button4 = tk.Button(self.root, text="Stage4", font=("",36), width=50, bg="red", command=self.cleanup)
+        self.button4.pack()
+
+    def cleanup(self):
+        self.button4.destroy()
+        self.button3.destroy()
+        self.button2.destroy()
+        self.button1.destroy()
+        self.label1.destroy()
+        self.on_cleanup()
+
+class MainStage(object):
+    def __init__(self, root):
+        self.root = root
+
+    def setup(self):
+        self.root.geometry('1200x900')
+        self.root.title("メインステージ")
+        self.root.configure(background="#ffffff")
+
+        #ラベル
+        label1 = tk.Label(self.root, text="間違い探しゲーム",bg="white")  #文字ラベル設定
+        label1.pack(side="top") # 場所を指定　
+
+        #文字色、背景色、サイズ、フォントを指定。
+        font1 = font.Font(family='Helvetica', size=40)
+        label2 = tk.Label(self.root, text="正解の数字を選んでください！", font=font1,bg="white")
+        label2.pack(side="top")
+
+        # 画像を表示するための準備
+        img = Image.open('aruku.jpg')
+        img = ImageTk.PhotoImage(img)
+
+        # 画像を表示するためのキャンバスの作成（ピンクで表示）
+        canvas = tk.Canvas(bg = "pink", width=200, height=200)
+        canvas.place(x=400, y=200) # 左上の座標を指定
+        # キャンバスに画像を表示する。第一引数と第二引数は、x, yの座標
+        canvas.create_image(150, 200, image=img,)
+        
+        
+        # 画像を表示するためのキャンバスの作成（ピンクで表示）
+        canvas = tk.Canvas(bg = "pink", width=100, height=100)
+        canvas.place(x=700, y=200) # 左上の座標を指定
+        # キャンバスに画像を表示する。第一引数と第二引数は、x, yの座標
+        canvas.create_image(150, 200, image=img,)
+        
+        # 画像を表示するためのキャンバスの作成（ピンクで表示）
+        canvas = tk.Canvas(bg = "pink", width=100, height=100)
+        canvas.place(x=850, y=200) # 左上の座標を指定
+        # キャンバスに画像を表示する。第一引数と第二引数は、x, yの座標
+        canvas.create_image(150, 200, image=img,)
+        
+        # 画像を表示するためのキャンバスの作成（ピンクで表示）
+        canvas = tk.Canvas(bg = "pink", width=100, height=100)
+        canvas.place(x=1000, y=200) # 左上の座標を指定
+        # キャンバスに画像を表示する。第一引数と第二引数は、x, yの座標
+        canvas.create_image(1000, 200, image=img,)
+
+        # 画像を表示するためのキャンバスの作成（ピンクで表示）
+        canvas = tk.Canvas(bg = "pink", width=100, height=100)
+        canvas.place(x=700, y=350) # 左上の座標を指定
+        # キャンバスに画像を表示する。第一引数と第二引数は、x, yの座標
+        canvas.create_image(150, 200, image=img,)
+        
+        # 画像を表示するためのキャンバスの作成（ピンクで表示）
+        canvas = tk.Canvas(bg = "pink", width=100, height=100)
+        canvas.place(x=850, y=350) # 左上の座標を指定
+        # キャンバスに画像を表示する。第一引数と第二引数は、x, yの座標
+        canvas.create_image(150, 200, image=img,)
+        
+        # 画像を表示するためのキャンバスの作成（ピンクで表示）
+        canvas = tk.Canvas(bg = "pink", width=100, height=100)
+        canvas.place(x=1000, y=350) # 左上の座標を指定
+        # キャンバスに画像を表示する。第一引数と第二引数は、x, yの座標
+        canvas.create_image(150, 200, image=img,)
+
+        # 画像を表示するためのキャンバスの作成（ピンクで表示）
+        canvas = tk.Canvas(bg = "pink", width=100, height=100)
+        canvas.place(x=850, y=500) # 左上の座標を指定
+        # キャンバスに画像を表示する。第一引数と第二引数は、x, yの座標
+        canvas.create_image(150, 200, image=img,)
+
+        # 画像を表示するためのキャンバスの作成（ピンクで表示）
+        canvas = tk.Canvas(bg = "pink", width=100, height=100)
+        canvas.place(x=700, y=500) # 左上の座標を指定
+        # キャンバスに画像を表示する。第一引数と第二引数は、x, yの座標
+        canvas.create_image(150, 200, image=img,)
+        
+        # 画像を表示するためのキャンバスの作成（ピンクで表示）
+        canvas = tk.Canvas(bg = "pink", width=100, height=100)
+        canvas.place(x=1000, y=500) # 左上の座標を指定
+        # キャンバスに画像を表示する。第一引数と第二引数は、x, yの座標
+        canvas.create_image(150, 200, image=img,)
+        
+
+        # 画像を表示するためのキャンバスの作成（ピンクで表示）
+        canvas = tk.Canvas(bg = "pink", width=100, height=100)
+        canvas.place(x=1000, y=500) # 左上の座標を指定
+        # キャンバスに画像を表示する。第一引数と第二引数は、x, yの座標
+        canvas.create_image(150, 200, image=img,)
+
+
+        # ウィジェットをクリック
+        def callback(event):
+            # ボタンの背景色を赤に変更
+            if event.widget["bg"] == "SystemButtonFace":
+                event.widget["bg"] = "red"
+            # 赤色なら元に戻す。
+            else:
+                event.widget["bg"] = "SystemButtonFace"
+
+
+        # ボタン
+        btn = tk.Button(self.root, text='1'+str(),height=5,width=10)
+        btn.bind("<1>",callback)
+        btn.place(x=10, y=400)
+        btn = tk.Button(self.root, text='2',height=5,width=10)
+        btn.place(x=100, y=400)
+        btn = tk.Button(self.root, text='3',height=5,width=10)
+        btn.place(x=190, y=400)
+        btn = tk.Button(self.root, text='4',height=5,width=10)
+        btn.place(x=10, y=500)
+        btn = tk.Button(self.root, text='5',height=5,width=10)
+        btn.place(x=100, y=500)
+        btn = tk.Button(self.root, text='6',height=5,width=10)
+        btn.place(x=190, y=500)
+        btn = tk.Button(self.root, text='7',height=5,width=10)
+        btn.place(x=10, y=600)
+        btn = tk.Button(self.root, text='8',height=5,width=10)
+        btn.place(x=100, y=600)
+        btn = tk.Button(self.root, text='9',height=5,width=10)
+        btn.place(x=190, y=600)
+
+
+
+
+root = tk.Tk()
+
+mainstage = MainStage(root)
+
+title = TitleScene(root, mainstage.setup)
+title.setup()
+
+root.mainloop()
